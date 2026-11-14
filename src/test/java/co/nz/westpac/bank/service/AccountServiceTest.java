@@ -20,13 +20,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import co.nz.westpac.bank.co.AccountVO;
 import co.nz.westpac.bank.entity.Account;
 import co.nz.westpac.bank.exception.DatabaseAccessException;
 import co.nz.westpac.bank.exception.MaximumAccountsException;
 import co.nz.westpac.bank.exception.OffensiveNickNameException;
 import co.nz.westpac.bank.mapper.AccountMapper;
 import co.nz.westpac.bank.repository.AccountRepository;
+import co.nz.westpac.bank.vo.AccountVO;
 
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {

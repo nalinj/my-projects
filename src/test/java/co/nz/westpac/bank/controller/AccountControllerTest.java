@@ -17,9 +17,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import co.nz.westpac.bank.co.AccountVO;
 import co.nz.westpac.bank.repository.NickNameRepository;
 import co.nz.westpac.bank.service.AccountService;
+import co.nz.westpac.bank.vo.AccountVO;
 import tools.jackson.databind.ObjectMapper;
 
 @WebMvcTest(AccountController.class)

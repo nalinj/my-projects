@@ -1,4 +1,4 @@
-package co.nz.westpac.bank.co;
+package co.nz.westpac.bank.vo;
 
 import lombok.Getter;
 import lombok.Setter;

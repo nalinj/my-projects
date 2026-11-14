@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.nz.westpac.bank.co.AccountVO;
 import co.nz.westpac.bank.service.AccountService;
+import co.nz.westpac.bank.vo.AccountVO;
 
 @RestController
 @RequestMapping("/account")
