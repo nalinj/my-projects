@@ -13,6 +13,7 @@ TODO
 Database scripts.
 
 Database name: postgres
+
 Schema Name: westpac
 
 CREATE TABLE westpac.account (
