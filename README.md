@@ -11,6 +11,7 @@ TODO
 
 
 Database scripts.
+
 Schema Name: westpac
 
 CREATE TABLE westpac.account (
