@@ -36,7 +36,7 @@ public class Account implements Serializable {
 	private String name;
 	
 	@Size(min = 5, max = 30, message = "Nickname must be between 5 and 30 characters")
-	@Column
+	@Column(length = 30, nullable = true)
 	private String nickName;
 
     @PrePersist
