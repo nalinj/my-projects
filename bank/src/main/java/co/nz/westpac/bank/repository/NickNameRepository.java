@@ -6,5 +6,5 @@ import co.nz.westpac.bank.entity.NickName;
 
 public interface NickNameRepository extends JpaRepository<NickName, Long>{
 
-	boolean existsByName(String nickName);
+	boolean existsByNameIgnoreCase(String nickName);
 }

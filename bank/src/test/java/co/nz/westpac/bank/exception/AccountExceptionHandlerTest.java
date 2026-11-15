@@ -89,7 +89,7 @@ class AccountExceptionHandlerTest {
         ConstraintViolationException ex = new ConstraintViolationException(
                 Set.of(nestedViolation, simpleViolation));
 
-        ProblemDetail result = exceptionHandler.handleConstraintViolation(ex);
+        ProblemDetail result = exceptionHandler.handleConstraintViolations(ex);
 
         assertThat(result.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
         assertThat(result.getTitle()).isEqualTo("Constraint Violation");

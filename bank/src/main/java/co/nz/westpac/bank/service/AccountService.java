@@ -35,15 +35,23 @@ public class AccountService {
 		this.dataSource = dataSource;
 	}
 	
+	/**
+	 * Creates an account.
+	 * 
+	 * @param accountVO
+	 * @return the new account created
+	 */
 	@Transactional
-	public AccountVO create(AccountVO accountVO) throws MaximumAccountsException {
+	public AccountVO create(AccountVO accountVO) {
 		try (Connection connection = dataSource.getConnection()) {
 			long accountCount = accountRepository.countByNameAndNickName(accountVO.getName(), accountVO.getNickName());
+			
 			if (accountCount > 5) {
 				throw new MaximumAccountsException("Maximum number of accounts has reached for this customer");
 			}
 			
 			boolean nickNameExists = nickNameService.existsByName(accountVO.getNickName());
+			
 			if (nickNameExists) {
 				throw new OffensiveNickNameException("Nickname entered is offensive");
 			}
@@ -54,10 +62,21 @@ public class AccountService {
         }
 	}
 	
+	/**
+	 * Returns the account by account number.
+	 * 
+	 * @param accountNumber
+	 * @return
+	 */
 	public AccountVO getAccount(String accountNumber) {
-		Account account = accountRepository.findByNumber(accountNumber);
-		if (account == null) {
+		if (accountNumber == null || accountNumber.isBlank() || accountNumber.isEmpty()) {
 			throw new InvalidBankAccountException("Invalid bank account number");
+		}
+		
+		Account account = accountRepository.findByNumber(accountNumber);
+		
+		if (account == null) {
+			throw new InvalidBankAccountException("Account doesn't exist");
 		}
 		
 		return accountMapper.mapToVO(account);

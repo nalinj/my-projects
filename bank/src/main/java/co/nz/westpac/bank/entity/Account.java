@@ -27,6 +27,7 @@ public class Account implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(min = 16, max = 16, message = "Account number needs to be 16 characters")
 	@Column(name = "number", unique = true, nullable = false, updatable = false)
 	private String number;
 	
@@ -45,6 +46,7 @@ public class Account implements Serializable {
         }
     }
 
+    //TODO: uniqueness of account numbers needs to be assured
     private String generateAccountNumber() {
         // Example: 16-digit random numeric string
         long number = ThreadLocalRandom.current().nextLong(1000_0000_0000_0000L, 1_0000_0000_0000_0000L);

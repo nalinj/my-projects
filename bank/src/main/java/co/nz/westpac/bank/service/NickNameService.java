@@ -14,10 +14,19 @@ public class NickNameService {
 		this.nickNameRepository = nickNameRepository;
 	}
 	
+	/**
+	 * Checks the nick name for offensive names ignoring case. If the nick name is empty it is not offensive.
+	 * 
+	 * @param nickName nick name
+	 * @return true if in the offensive nickname list else false.
+	 */
 	//TODO: ECache is used here but industry standard cache (e.g. Redis) needs to be used for production.
-	@Cacheable(condition = "#nickName != null")
+	@Cacheable(value = "offensiveNickNames", key = "#nickName", condition = "#nickName != null")
 	public boolean existsByName(String nickName) {
-		return nickNameRepository.existsByName(nickName);
+		if (nickName == null || nickName.isEmpty() || nickName.isBlank()) {
+			return false;
+		}
+		return nickNameRepository.existsByNameIgnoreCase(nickName);
 	}
 
 }

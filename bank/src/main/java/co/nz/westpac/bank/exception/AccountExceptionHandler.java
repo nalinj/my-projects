@@ -14,6 +14,12 @@ import jakarta.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class AccountExceptionHandler {
 	
+	/**
+	 * Handles databases connectivity issues.
+	 * 
+	 * @param ex DatabaseAccessException
+	 * @return problem details
+	 */
     @ExceptionHandler(DatabaseAccessException.class)
     public ProblemDetail handleDatabaseConnectivity(DatabaseAccessException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
@@ -21,6 +27,12 @@ public class AccountExceptionHandler {
         return problem;
     }
     
+	/**
+	 * Handles invalid back accounts.
+	 * 
+	 * @param ex InvalidBankAccountException
+	 * @return problem details
+	 */
     @ExceptionHandler(InvalidBankAccountException.class)
     public ProblemDetail handleInvalidBankAccountNumber(InvalidBankAccountException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
@@ -28,6 +40,12 @@ public class AccountExceptionHandler {
         return problem;
     }
     
+	/**
+	 * Handles offensive nick names.
+	 * 
+	 * @param ex OffensiveNickNameException
+	 * @return problem details
+	 */
     @ExceptionHandler(OffensiveNickNameException.class)
     public ProblemDetail handleOffensiveNickname(OffensiveNickNameException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
@@ -35,6 +53,12 @@ public class AccountExceptionHandler {
         return problem;
     }
 	
+	/**
+	 * Handles maximum number of account creation.
+	 * 
+	 * @param ex MaximumAccountsException
+	 * @return problem details
+	 */
     @ExceptionHandler(MaximumAccountsException.class)
     public ProblemDetail handleMaximumAccountsCreated(MaximumAccountsException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
@@ -42,9 +66,15 @@ public class AccountExceptionHandler {
         return problem;
     }
     
-    // 2. Handle Bean Validation Errors (@Valid / @NotNull / @Size)
+	/**
+	 * Handles entity constraint violations. 
+	 * e.g. Handle Bean Validation Errors (@Valid / @NotNull / @Size)
+	 * 
+	 * @param ex ConstraintViolationException
+	 * @return problem details
+	 */
     @ExceptionHandler(ConstraintViolationException.class)
-    public ProblemDetail handleConstraintViolation(ConstraintViolationException ex) {
+    public ProblemDetail handleConstraintViolations(ConstraintViolationException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST, "One or more parameters failed validation.");
         problem.setTitle("Constraint Violation");
