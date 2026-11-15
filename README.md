@@ -1,7 +1,7 @@
 This is a test banking Spring Boot Application.
 
 Assumptions.
-1. Account number is 16 digits long.
+1. Account number is 16 digits long and can't be updated.
 2. The uniqueness of a customer is determined by the name and the nickname pair.
 
 
@@ -11,6 +11,9 @@ TODO
 
 
 Database scripts.
+
+Database name: postgres
+
 Schema Name: westpac
 
 CREATE TABLE westpac.account (
