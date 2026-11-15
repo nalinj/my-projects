@@ -65,7 +65,7 @@ class AccountControllerTest {
 	void accountDetails_ReturnsOkStatusAndAccount() throws Exception {
 		when(accountService.getAccount("12345678")).thenReturn(sampleAccount);
 
-		mockMvc.perform(get("/account/details")
+		mockMvc.perform(get("/account/details/12345678")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(sampleAccount)))
 				.andExpect(status().isOk())
